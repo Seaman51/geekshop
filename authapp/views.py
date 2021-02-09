@@ -2,9 +2,11 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import auth
 from django.urls import reverse
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from authapp.forms import UserLoginForm, UserRegisterForm, UserProfileForm
 from basket.models import Basket
+
 
 def login(request):
     if request.method == 'POST':
@@ -35,14 +37,11 @@ def register(request):
     return render(request, 'authapp/register.html', context)
 
 
-def profile(request):
-    return render(request, 'authapp/profile.html')
-
-
 def logout(request):
     auth.logout(request)
     return HttpResponseRedirect(reverse('index'))
 
+@login_required()
 def profile(request):
     if request.method == 'POST':
         form = UserProfileForm(data=request.POST, files=request.FILES, instance=request.user)
@@ -56,4 +55,3 @@ def profile(request):
         'baskets': Basket.objects.filter(user=request.user),
     }
     return render(request, 'authapp/profile.html', context)
-
