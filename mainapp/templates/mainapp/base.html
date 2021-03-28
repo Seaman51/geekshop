@@ -37,12 +37,7 @@
                     <a class="nav-link" href="{% url 'products:index' %}">Каталог</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-shopping-bag"></i></a>
-                </li>
-                <li class="nav-item">
-                    <a href="{% url 'ordersapp:orders_list' %}">
-                       Заказы
-                   </a>
+                    <a class="nav-link" href="{% url 'ordersapp:orders_list' %}"><i class="fas fa-shopping-bag"></i> В корзине {{ basket_count }}</a>
                 </li>
                 {% if user.is_authenticated %}
                     <li class="nav-item">
