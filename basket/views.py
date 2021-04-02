@@ -14,13 +14,14 @@ def basket_add(request, product_id):
 
     if not baskets.exists():
         basket = Basket(user=request.user, product=product)
-
+        basket.quantity += 1
+        basket.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
     else:
         basket = baskets.first()
-
-    basket.quantity += 1
-    basket.save()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+        basket.quantity += 1
+        basket.save()
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required
