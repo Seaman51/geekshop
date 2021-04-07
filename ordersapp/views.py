@@ -3,12 +3,11 @@ from django.urls import reverse, reverse_lazy
 from django.db import transaction
 from django.http import HttpResponse, JsonResponse
 from django.forms import inlineformset_factory
-
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
 from django.views.generic.detail import DetailView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
+from django.views.decorators.cache import cache_page
 from basket.models import Basket
 from mainapp.models import Product
 from ordersapp.models import Order, OrderItem
@@ -135,6 +134,7 @@ def order_forming_complete(request, pk):
     return HttpResponseRedirect(reverse('ordersapp:orders_list'))
 
 
+@cache_page(120)
 def get_product_price(request, pk):
     # if request.is_ajax():
     #     product = Product.objects.filter(pk=int(pk)).first()

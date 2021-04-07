@@ -11,5 +11,5 @@ def send_verify_mail(user):
     message = f'Пройдите по ссылке {verify_link}'
 
     result = send_mail(title, message, settings.EMAIL_HOST_USER, [user.email, ], fail_silently=False)
-    print(result)
+
     return result
