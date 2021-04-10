@@ -1,0 +1,5 @@
+http://127.0.0.1/
+http://127.0.0.1/products/
+http://127.0.0.1/basket/
+http://127.0.0.1/order/
+http://127.0.0.1/auth/

@@ -1,0 +1,17 @@
+root@37-140-197-39:/home/django/geekshop/doc# siege -f /home/django/geekshop/doc/urls.txt -d1 -r29 -c1
+** SIEGE 4.0.4
+** Preparing 1 concurrent users for battle.
+The server is now under siege...
+Transactions:                     29 hits
+Availability:                 100.00 %
+Elapsed time:                  13.03 secs
+Data transferred:               0.00 MB
+Response time:                  0.00 secs
+Transaction rate:               2.23 trans/sec
+Throughput:                     0.00 MB/sec
+Concurrency:                    0.00
+Successful transactions:           6
+Failed transactions:               0
+Longest transaction:            0.01
+Shortest transaction:           0.00
+
