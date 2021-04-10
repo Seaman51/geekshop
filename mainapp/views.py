@@ -6,7 +6,7 @@ from django.views.decorators.cache import cache_page
 
 def index(request):
     context = {
-        'title': 'GeekShop',
+        'title': 'Главная',
     }
     return render(request, 'mainapp/index.html', context)
 

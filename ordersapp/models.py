@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from mainapp.models import Product
+from django.db.models import F
 
 
 class Order(models.Model):
@@ -48,7 +49,7 @@ class Order(models.Model):
 
     def delete(self):
         for item in self.orderitems.select_related():
-            item.product.quantity += item.quantity
+            item.product.quantity = F('quantity') + item.quantity
             item.product.save()
 
         self.is_active = False
