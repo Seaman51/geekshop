@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 import json
 import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,6 +24,8 @@ SECRET_KEY = '$1_wdvdh9v(^by6h5huo*%!u$!=c6xz17xh(n)@qa=cwg_nfdo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+TESTING_MODE = 'test' in sys.argv
 
 ALLOWED_HOSTS = ['*']
 
@@ -56,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'social_django.middleware.SocialAuthExceptionMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 if DEBUG:
     MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware', ]
